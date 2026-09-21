@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123e40">
+  <title>Acervo — CRUD de livros</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#inicio" aria-label="Acervo, início"><span class="brand-icon">A</span><span>acervo<span class="brand-dot">.</span></span></a>
+      <div class="sidebar-group"><span class="sidebar-label">PAINEL</span><a class="nav-link active" href="#livros"><span>▦</span> Minha biblioteca</a></div>
+      <div class="sidebar-bottom"><span class="avatar">PB</span><div><strong>Pedro Borges</strong><small>Desenvolvimento de APIs</small></div></div>
+    </aside>
+
+    <main id="inicio" class="main-content">
+      <header class="topbar"><span>OAT 1 <span class="topbar-divider">/</span> Sistemas de Informação</span><span class="topbar-tag">PROJETO CRUD</span></header>
+      <div class="content-wrap" id="livros">
+        <div class="heading-row"><div><p class="eyebrow">SUA BIBLIOTECA, ORGANIZADA</p><h1>Minha biblioteca<span class="accent">.</span></h1><p class="subtitle">Um espaço para registrar, acompanhar e cuidar das suas leituras.</p></div><button id="novo-livro" class="primary-button" type="button"><span aria-hidden="true">＋</span> Adicionar livro</button></div>
+
+        <section class="stats" aria-label="Resumo da biblioteca">
+          <div class="stat-card"><div class="stat-icon teal">▤</div><div><strong id="total-livros">0</strong><span>Livros no acervo</span></div></div>
+          <div class="stat-card"><div class="stat-icon amber">◉</div><div><strong id="total-lidos">0</strong><span>Leituras concluídas</span></div></div>
+          <div class="stat-card"><div class="stat-icon lavender">◷</div><div><strong id="total-pendentes">0</strong><span>Para ler</span></div></div>
+        </section>
+
+        <section class="library-section" aria-labelledby="acervo-titulo">
+          <div class="section-head"><div><h2 id="acervo-titulo">Seu acervo</h2><p>Explore e gerencie seus livros cadastrados.</p></div><span class="count-pill" id="contagem">0 livros</span></div>
+          <div class="toolbar"><label class="search"><span aria-hidden="true">⌕</span><input id="busca" type="search" placeholder="Buscar por título ou autor..." aria-label="Buscar livros"></label><select id="filtro" aria-label="Filtrar livros"><option value="todos">Todos os livros</option><option value="lidos">Lidos</option><option value="pendentes">Para ler</option></select></div>
+          <div id="lista" class="book-list" aria-live="polite"></div>
+          <div id="vazio" class="empty-state" hidden><span>⌁</span><h3>Nenhum livro encontrado</h3><p>Experimente outra busca ou adicione um novo livro.</p></div>
+        </section>
+        <footer>OAT 1 · Desenvolvimento de APIs · CRUD com arrays</footer>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="form-dialog" class="dialog"><form id="form-livro"><div class="dialog-header"><div><p class="eyebrow">GERENCIAR ACERVO</p><h2 id="dialog-titulo">Adicionar livro</h2></div><button type="button" class="icon-button" id="fechar-dialog" aria-label="Fechar">×</button></div><div class="form-fields"><label>Título<input name="titulo" maxlength="100" required placeholder="Ex.: Dom Casmurro"></label><label>Autor<input name="autor" maxlength="100" required placeholder="Ex.: Machado de Assis"></label><div class="form-grid"><label>Ano de publicação<input name="ano" type="number" min="1450" max="2100" required placeholder="1899"></label><label>Categoria<input name="categoria" maxlength="50" required placeholder="Ex.: Romance"></label></div><label class="checkbox-label"><input name="lido" type="checkbox"><span>Já concluí a leitura</span></label></div><p id="form-erro" class="form-error" role="alert" hidden></p><div class="dialog-actions"><button type="button" class="secondary-button" id="cancelar">Cancelar</button><button type="submit" class="primary-button" id="salvar">Salvar livro</button></div></form></dialog>
+  <dialog id="excluir-dialog" class="dialog small-dialog"><div class="dialog-header"><div><p class="eyebrow">CONFIRMAR EXCLUSÃO</p><h2>Excluir livro?</h2></div></div><p id="excluir-texto">Esta ação remove o livro do acervo.</p><div class="dialog-actions"><button id="cancelar-exclusao" class="secondary-button" type="button">Cancelar</button><button id="confirmar-exclusao" class="danger-button" type="button">Excluir livro</button></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
